@@ -1,0 +1,68 @@
+#!/usr/bin/bash
+
+
+set -e
+set -u
+
+all=(shutdown reboot suspend hibernate logout lockscreen)
+
+show=("${all[@]}")
+
+declare -A texts
+texts[lockscreen]="Lock"
+texts[switchuser]="Switch User"
+texts[logout]="Logout"
+texts[suspend]="Suspend"
+texts[hibernate]="Hibernate"
+texts[reboot]="Reboot"
+texts[shutdown]="Shutdown"
+
+declare -A icons
+icons[lockscreen]=""
+icons[switchuser]=""
+icons[logout]=""
+icons[suspend]=""
+icons[hibernate]=""
+icons[reboot]=""
+icons[shutdown]=""
+
+declare -A actions
+actions[lockscreen]="~/.config/i3/scripts/blur-lock"
+actions[switchuser]="dm-tool switch-to-greeter"
+actions[logout]="i3-msg exit"
+actions[suspend]="systemctl suspend"
+actions[hibernate]="systemctl hibernate"
+actions[reboot]="systemctl reboot"
+actions[shutdown]="systemctl poweroff"
+
+confirmation=(reboot shutdown logout)
+
+dryrun=false
+showsymbols=true
+
+function check_valid {
+    option="$1"
+    shift 1
+    for entry in "${@}"; do
+        if [
+
+
+
+
+
+
+menu=(
+  [ Shutdown]="systemctl poweroff"
+  [ Reboot]="systemctl reboot"
+  [ Suspend]="systemctl suspend"
+  [ Hibernate]="systemctl hibernate"
+  [ Lock]="~/.config/i3/scripts/blur-lock"
+  [ Logout]="i3-msg exit"
+  [ Cancel]=""
+)
+
+
+
+
+
+

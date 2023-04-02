@@ -1,0 +1,37 @@
+#-----------------------------------------------------------------------------#
+#!/bin/bash
+# Name:             ~/.script/powermenu/powermenu.sh
+# Description:      A simple powermenu script for i3wm
+# Author:           Floatyboy
+# Created:          26.03.2023
+# Author URI:       github.com/floatyboy
+# Author E-Mail:    hs@kleppnett.no
+#-----------------------------------------------------------------------------#
+# Dependencies:     gum
+# README:           github.com/charmbracelet/gum
+#-----------------------------------------------------------------------------#
+
+msg=$(echo -e " Please select an option from the menu below:")
+
+echo -e "$msg"
+
+choice=$(gum choose " Shutdown" " Reboot" " Suspend" " Hibernate" " Lock" " Logout" " Cancel" --cursor="  " --cursor.foreground "#d300d3" --selected.foreground "#d300d3" --selected.background "#00aaff")
+
+gum confirm "Are you sure you want to $choice?" || exit 0
+
+if [[ "$choice" == " Shutdown" ]]; then
+    systemctl poweroff
+elif [[ "$choice" == " Reboot" ]]; then
+    systemctl reboot
+elif [[ "$choice" == " Suspend" ]]; then
+    systemctl suspend
+elif [[ "$choice" == " Hibernate" ]]; then
+    systemctl hibernate
+elif [[ "$choice" == " Lock" ]]; then
+    ~/.config/i3/scripts/blur-lock
+elif [[ "$choice" == " Logout" ]]; then
+    i3-msg exit
+elif [[ "$choice" == " Cancel" ]]; then
+    exit 0
+fi
+
